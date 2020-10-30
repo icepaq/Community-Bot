@@ -2,8 +2,6 @@
 
 This is a bot created so that developers of all skill levels can contribute to this project.
 
-The purpose
-
 # Before Contributing
 
 To make this bot easy for people to upgrade and contribute in the future, certain coding guidelines need to be followed.
