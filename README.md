@@ -12,7 +12,7 @@ Before developing, create a text file "creds" with no extension. This is where y
 
 1. Add your discord tag at the top of the main.py file.
 2. Update the end of this README file to give a description of your contributions.
-3. Please comment your code! Make sure that people who may upgrade your future are able to easily understand your code.
+3. Please comment your code! Make sure that people who may upgrade your feature are able to easily understand your code.
 4. Follow PEP8 styling guides.
 
 This bot uses sqlite3 to store data. If you're doing anything related with data it's crucial you store all of it in the communitybot.db file. SQL has very simple syntax and can be learned in under an hour.
