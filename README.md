@@ -23,9 +23,9 @@ When adding to the bottom of this file, please follow the format that's used in 
 
 **Leveling System**
 
-Feature Creator: Anton#2908
-Files: main.py, sqlActions.py
-Description: Leveling system based on a radical function.
+- Feature Creator: Anton#2908
+- Files: main.py, sqlActions.py
+- Description: Leveling system based on a radical function.
 
 Breakdown:
 When a user sends a message, their xp is updated and stored in the database. When a user runs the !level command, a query is sent to the database to retrieve their xp. After that, their level is multiplied by the "curve" variable. This value is then square rooted and all the decimals are removed. This is their level.
