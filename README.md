@@ -21,7 +21,7 @@ This bot uses sqlite3 to store data. If you're doing anything related with data 
 
 When adding to the bottom of this file, please follow the format that's used in the "Leveling System" description.
 
-# Leveling System
+**Leveling System**
 
 Feature Creator: Anton#2908
 Files: main.py, sqlActions.py
