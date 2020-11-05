@@ -22,20 +22,23 @@ class MyClient(discord.Client):
         # Levels System #
         #################
         xp = sqlActions.selectLevels(str(message.author.id))
-        if xp is None:
-            sqlActions.userInsert(str(message.author), str(message.author.id), 0)
+        if message.author.bot:
+            pass
         else:
-            new_xp = xp[0] + random.randrange(10)
-            sqlActions.updateLevel(new_xp, str(message.author.id))
+            if xp is None:
+                sqlActions.userInsert(str(message.author), str(message.author.id), 0)
+            else:
+                new_xp = xp[0] + random.randrange(10)
+                sqlActions.updateLevel(new_xp, str(message.author.id))
 
-            # Levels are not stored in the database. Instead, xp is. The level is calculated by
-            # retrieving xp and calculating the square root and removing the decimals.
-            new_level = int(cmath.sqrt(new_xp * curve).real)
-            old_level = int(cmath.sqrt(xp[0] * curve).real)
+                # Levels are not stored in the database. Instead, xp is. The level is calculated by
+                # retrieving xp and calculating the square root and removing the decimals.
+                new_level = int(cmath.sqrt(new_xp * curve).real)
+                old_level = int(cmath.sqrt(xp[0] * curve).real)
 
-            if new_level > old_level:
-                m = '<@' + str(message.author.id) + "> is now level " + str(new_level)
-                await message.channel.send(m)
+                if new_level > old_level:
+                    m = '<@' + str(message.author.id) + "> is now level " + str(new_level)
+                    await message.channel.send(m)
         #######################
         # End of Level System #
         #######################
@@ -64,10 +67,14 @@ class MyClient(discord.Client):
             xp_result = sqlActions.selectXP(str(message.author.id))
             await message.channel.send(xp_result)
 
+        if message.content.startswith('!leaderboard'):
+            leaderboard = sqlActions.leaderboard()
+            await message.channel.send(leaderboard)
 
 client = MyClient()
 
 secret = ""
 with open("creds", "r") as s:
     secret = s.read()
+
 client.run(secret)

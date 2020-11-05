@@ -1,4 +1,8 @@
 import sqlite3
+import cmath
+
+curve = 0.1
+
 
 def dbSetup():
     conn = sqlite3.connect('communitybot.db')
@@ -12,6 +16,7 @@ def dbSetup():
 
     conn.close()
 
+
 def userInsert(user, id, level):
     conn = sqlite3.connect('communitybot.db')
     c = conn.cursor()
@@ -19,7 +24,6 @@ def userInsert(user, id, level):
     c.execute('INSERT INTO levels VALUES(?, ?, ?)', (user, id, level))
     conn.commit()
     conn.close()
-
 
 
 def selectLevels(args):
@@ -33,6 +37,7 @@ def selectLevels(args):
 
     return result
 
+
 def updateLevel(level, id):
     conn = sqlite3.connect('communitybot.db')
     c = conn.cursor()
@@ -41,6 +46,7 @@ def updateLevel(level, id):
     conn.commit()
 
     conn.close()
+
 
 def selectXP(id):
     conn = sqlite3.connect('communitybot.db')
@@ -53,6 +59,7 @@ def selectXP(id):
 
     return result
 
+
 def query(query):
     conn = sqlite3.connect('communitybot.db')
     c = conn.cursor()
@@ -61,3 +68,18 @@ def query(query):
     conn.commit()
 
     conn.close()
+
+
+def leaderboard():
+    conn = sqlite3.connect('communitybot.db')
+    c = conn.cursor()
+
+    result = "**__Leaderboard__**\n"
+    for i in c.execute('SELECT * FROM levels ORDER BY level DESC'):
+        add_result = '' + i[0] + ': ' + str(int(cmath.sqrt(i[2] * curve).real)) + "\n"
+        result = result + add_result
+
+    conn.commit()
+    conn.close()
+
+    return result
